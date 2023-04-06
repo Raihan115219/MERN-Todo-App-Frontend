@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Header = () => {
   const [userName, setUserName] = useState("");
+
   useEffect(() => {
     const name = localStorage.getItem("todoUser");
     setUserName(name);
   }, [userName]);
 
-  const handleLogOut = () => {
+  const handleLogOut = useCallback(() => {
     localStorage.removeItem("todoUser");
     setUserName("");
-  };
+  }, []);
 
   return (
     <div>
